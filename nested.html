@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // FUNCTION AS A VARIABLE:-
+        let product = function (x, y) {
+            console.log("addition", x + y)
+        }
+        // product(10, 20);
+
+
+        // ARROW FUNCTION :- (=>)   (anonymous function)
+        const p = (x, y) => {
+            console.log("my name is jay")
+        }
+        // p();
+
+
+        // IIFE :- IMEDITALY INVOKING FUNCTION EXPRESSION
+        (function(j,p){
+            console.log(j+p);
+        })(20,58)
+       
+
+        // // CLOUSER FUNCTION :-
+        function outerfun(){
+            function  innerfun(){
+                return ("this is innerfuncton");
+            }
+        }
+        outerfun();
+
+
+    </script>
+</body>
+
+</html>

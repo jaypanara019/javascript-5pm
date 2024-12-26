@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <h1>RAGISTER FORM</h1>
+        <br>
+        <br>
+        <form id="ragister" onsubmit="ragisterform()">
+            <label>FIRST NAME :-</label>
+            <input type="text" name="f:name" placeholder="first name" id="fname">
+            <br>
+            <br>
+            <label>LAST NAME :-</label>
+            <input type="text" name="l:name" placeholder="last name" id="lname">
+            <br>
+            <br>
+            <label>EMAIL :-</label>
+            <input type="email" name="email" placeholder="email" id="email">
+            <br>
+            <br>
+            <label>PASSWORD :-</label>
+            <input type="password" name="password" placeholder="password" id="pass">
+            <br>
+            <br>
+            <label>HOBBY :-</label>
+            <select name="hobby" placeholder="hobby" id="hobby">
+                <option value="">game</option>
+                <option value="">travaling</option>
+                <option value="">reding</option>
+            </select>
+            <br>
+            <br>
+            <label>DATE :-</label>
+            <input type="date" id="date">
+            <br>
+            <br>
+            <label>GENDER :-</label>
+            <input type="radio" id="male">male
+            <input type="radio" id="female">female
+            <br>
+            <br>
+            <button type="submit" id="btn">SUBMIT</button>
+        </form>
+    </center>
+
+
+    <script>
+
+    let fname = document.getElementById("fname").value;
+    let lname = document.getElementById("lname").value;
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("pass").value;
+    let hobby = document.getElementById("hobby").value;
+    let date = document.getElementById("date").value;
+    let gender = document.getElementById("male").value;
+    let female = document.getElementById("female").value;
+
+    function ragisterform() {
+        let form = document.querySelector("ragister");
+        console.log(form);
+    }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

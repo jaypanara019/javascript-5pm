@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1>COUNTDOWN</h1>
+        <div class="clock-container">
+            <div class="clock">
+                <div class="clock-hours clock-timer"><br></div>
+                <div class="clock-label label-hour"><br>
+                    Hours
+                </div><br>
+            </div>
+            <div class="clock">
+                <div class="clock-minutes clock-timer"><br></div>
+                <div class="clock-label label-minutes"><br>
+                    Minutes
+                </div><br>
+            </div>
+            <div class="clock">
+                <div class="clock-seconds clock-timer"><br></div>
+                <div class="clock-label label-seconds"><br>
+                    Seconds
+                </div><br>
+            </div>
+        </div>
+        <script>
+            window.onload = function () {
+                const controller = new AbortController();
+                const countDownDate = new Date("May 30, 2026 08:30:00").getTime();
+                const clockHoursElement = document.querySelector(".clock-hours");
+                const clockMinutesElement = document.querySelector(".clock-minutes");
+                const clockSecondsElement = document.querySelector(".clock-seconds");
+                animationInterval(1000, controller.signal, (time) => {
+                    let now = new Date().getTime();
+                    let distance = countDownDate - now;
+                    let hours = Math.floor((distance % (1000 * 60 * 60 * 24 )) / (1000 * 60 * 60));
+                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    clockHoursElement.textContent = hours;
+                    clockMinutesElement.textContent = minutes;
+                    clockSecondsElement.textContent = seconds;
+                    if (distance < 0) {
+                        controller.abort();
+                        document.querySelector(".clock-container").innerHTML = "EXPIRED";
+                    }
+                });
+            };
+            function animationInterval(ms, signal, callback) {
+
+                const start = document.timeline ? document.timeline.currentTime : performance.now();
+                function frame(time) {
+                    if (signal.aborted) return;
+                    callback(time);
+                    scheduleFrame(time);
+                }
+                function scheduleFrame(time) {
+                    const elapsed = time - start;
+                    const roundedElapsed = Math.round(elapsed / ms) * ms;
+                    const targetNext = start + roundedElapsed + ms;
+                    const delay = targetNext - performance.now();
+                    setTimeout(() => requestAnimationFrame(frame), delay);
+                }
+                scheduleFrame(start);
+            }
+        </script>
+    </body>
+    </html>
+</body>
+
+</html>

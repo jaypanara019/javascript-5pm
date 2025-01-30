@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+h1 {
+    font-weight: 400;
+    font-size: 30px;
+    font-family: "Raleway";
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #eeeeee;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    font-size: 35px;
+    color: white;
+    position: relative;
+}
+
+nav a span {
+    padding: 5px 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 18px;
+    top: -40%;
+    right: -30%;
+}
+
+img {
+    border-radius: 10px;
+}
+
+#res {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.box {
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 295px);
+    text-align: center;
+    gap: 30px 30px;
+    justify-content: center;
+}
+
+h5 span {
+    text-decoration: line-through;
+}
+
+.productName {
+    font-size: 23px;
+    margin: 19px 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.insideBox h5 {
+    margin: 5px 0 25px 0;
+}
+
+.insideBox {
+    background-color: #ffffff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    padding-bottom: 35px!important;
+}
+
+.insideBox img {
+    transform: scale(0.97);
+    transition: all 0.3s linear;
+}
+
+.insideBox:hover img {
+    transform: scale(1);
+}
+
+.insideBox h2 {
+    transition: all 0.2s linear;
+    font-weight: 800;
+}
+
+.insideBox:hover h2 {
+    letter-spacing: 5px;
+}
+
+.quantity {
+    font-size: 20px;
+}
+
+
+/* btn  */
+
+.Buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px 10px;
+}
+
+.Buttons a {
+    margin-right: 10px;
+}
+
+.fa-circle-minus,
+.fa-circle-plus {
+    font-size: 30px;
+    color: rgb(0, 145, 0);
+    cursor: pointer;
+}
+
+.fa-circle-minus {
+    color: rgb(165, 0, 0);
+}

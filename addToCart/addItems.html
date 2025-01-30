@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON CRUD</title>
+    <link rel="stylesheet" href="css/addItems.css">
+</head>
+
+<body>
+    <h1 align="center">ADD ITEMS FORM</h1>
+    <input type="hidden" id="editno">
+    <form method="get" onsubmit="return Get_data()">
+        <div class="form_elems">
+            <input type="text" placeholder="Search" id="search" onkeyup="search_data()"><br>
+            <label>Name of the Product</label>
+            <input type="text" id="product_Name"><br>
+            <label>Product Price</label>
+            <input type="number" id="product_Price"><br>
+            <label>Product Old Price</label>
+            <input type="number" id="product_OPrice"><br>
+            <label>Product Image</label>
+            <input type="file" id="product_Img"><br>
+            <input type="submit" class="submit" id="btn" value="submit">
+            <a href="items.html" target="_blank">View</a>
+            <div class="bg"></div>
+        </div>
+    </form>
+    <div id="res"></div>
+    <script>
+        var details = JSON.parse(localStorage.getItem("details")) || [];
+
+        function Get_data() {
+            var product_Name = document.getElementById("product_Name").value;
+            var product_Price = document.getElementById("product_Price").value;
+            var product_OPrice = document.getElementById("product_OPrice").value;
+            var product_Img = document.getElementById('product_Img').files[0]; 
+            var editno = document.getElementById("editno").value;
+            if (product_Name == "" || product_Price == "" || product_OPrice == "") {
+                alert("Please fill all the fields!!!");
+            } else {
+                if (product_Img) {
+                    convertImageToBase64(product_Img, function(base64Img) {
+                        if (editno) {
+                            for (var i = 0; i < details.length; i++) {
+                                if (details[i].no == editno) {
+                                    details[i].product_Name = product_Name;
+                                    details[i].product_Price = product_Price;
+                                    details[i].product_OPrice = product_OPrice;
+                                    details[i].product_Img = base64Img; 
+                                    break;
+                                }
+                            }
+                        } else {
+                            var stud = {
+                                product_Name: product_Name,
+                                product_Price: product_Price,
+                                product_OPrice: product_OPrice,
+                                product_Img: base64Img, 
+                                no: Math.round(Math.random() * 10000),
+                            };
+                            details.push(stud);
+                        }
+                        localStorage.setItem("details", JSON.stringify(details));
+                        Set_data();
+                        document.getElementById("product_Name").value = "";
+                        document.getElementById("product_Price").value = "";
+                        document.getElementById("product_OPrice").value = "";
+                        document.getElementById("product_Img").value = "";
+                        document.getElementById("editno").value = "";
+                        document.getElementById("btn").value = "Submit";
+                    });
+                } else {
+                    alert("Please select an image file!");
+                }
+            }
+            return false; 
+        }
+
+        function search_data() {
+            var search_Term = document.getElementById('search').value.trim().toLowerCase();
+            var filteredData = details.filter(function(item) {
+                return item.product_Name.toLowerCase().includes(search_Term) || item.product_Price.toLowerCase().includes(search_Term) || item.product_OPrice.toLowerCase().includes(search_Term);
+            });
+            var data = "<br><div class='table-container'><table class='data-table'><thead><tr><th>Product Name</th><th>Product Price</th><th>Product Old Price</th><th>Product Image</th><th colspan='2'>Actions</th></tr></thead><tbody>";
+            for (var i = 0; i < filteredData.length; i++) {
+                data += `<tr>`;
+                data += `<td><b>${filteredData[i].product_Name}</b></td>`;
+                data += `<td>₹ ${filteredData[i].product_Price}</td>`;
+                data += `<td>₹ ${filteredData[i].product_OPrice}</td>`;
+                data += `<td><img src='${filteredData[i].product_Img}' class='product-image' /></td>`;
+                data += `<td><button onclick='Delete(${filteredData[i].no})' class='btn-delete'>Delete</button></td>`;
+                data += `<td><button onclick='Update(${filteredData[i].no})' class='btn-update'>Update</button></td>`;
+                data += `</tr>`;
+            }
+            data += `</tbody></table></div>`;
+            document.getElementById("res").innerHTML = data;
+        }
+
+        function convertImageToBase64(file, callback) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var base64Img = event.target.result;
+                callback(base64Img);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function Set_data() {
+            var data = "<br><div class='table-container'><table class='data-table'><thead><tr><th>Product Name</th><th>Product Price</th><th>Product Old Price</th><th>Product Image</th><th colspan='2'>Actions</th></tr></thead><tbody>";
+            for (var i = 0; i < details.length; i++) {
+                data += `<tr>`;
+                data += `<td><b>${details[i].product_Name}</b></td>`;
+                data += `<td>₹ ${details[i].product_Price}</td>`;
+                data += `<td>₹ ${details[i].product_OPrice}</td>`;
+                data += `<td><img src='${details[i].product_Img}' class='product-image' /></td>`;
+                data += `<td><button onclick='Delete(${details[i].no})' class='btn-delete'>Delete</button></td>`;
+                data += `<td><button onclick='Update(${details[i].no})' class='btn-update'>Update</button></td>`;
+                data += `</tr>`;
+            }
+            data += `</tbody></table></div>`;
+        }
+
+
+        function Delete(no) {
+            for (var i = 0; i < details.length; i++) {
+                if (details[i].no == no) {
+                    details.splice(i, 1);
+                    break;
+                }
+            }
+            localStorage.setItem("details", JSON.stringify(details));
+            Set_data();
+        }
+
+        function Update(no) {
+            for (var i = 0; i < details.length; i++) {
+                if (details[i].no == no) {
+                    document.getElementById("product_Name").value = details[i].product_Name;
+                    document.getElementById("product_Price").value = details[i].product_Price;
+                    document.getElementById("product_OPrice").value = details[i].product_OPrice;
+                    document.getElementById("editno").value = details[i].no;
+                    document.getElementById("btn").value = "Update";
+                    break;
+                }
+            }
+        }
+
+        Set_data();
+    </script>
+</body>
+
+</html>

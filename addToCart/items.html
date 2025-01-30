@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items List</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/items.css">
+</head>
+
+<body>
+    <nav>
+        <h1>PRODUCT LIST</h1>
+        <a href="addToCart.html" target="_blank"><i class="fa-solid fa-cart-shopping"></i><span id="showTQuantity">0</span></a>
+    </nav>
+    <div id="res"></div>
+    <script src="js/all.min.js"></script>
+    <script>
+        var details = JSON.parse(localStorage.getItem("details")) || [];
+        var basket = JSON.parse(localStorage.getItem("basket")) || [];
+
+        function Set_data() {
+            var data = "<div class='box'>";
+            for (var i = 0; i < details.length; i++) {
+                data += "<div class='insideBox' style='border: 1px solid #ccc; border-radius:10px; padding: 10px;'>";
+                data += "<div style='width:100%;'>"; 
+                data += `<img src='${details[i].product_Img}' width="250px" height="250px"/></div>`;
+                data += `<h2 class='productName'>${details[i].product_Name}</h2>`;
+                data += `<h4>Price: ₹ ${details[i].product_Price}</h4>`;
+                data += `<h5>Old Price: <span>₹ ${details[i].product_OPrice}</span></h5>`;
+                data += `<div class='Buttons'>
+                        <i onclick="decrement(${details[i].no})" class="fa-solid fa-circle-minus"></i>
+                        <div id="quantity_${details[i].no}" class='quantity'>${getQuantity(details[i].no)}</div>
+                        <i onclick="increment(${details[i].no})" class="fa-solid fa-circle-plus"></i>
+                        </div>`;
+                data += "</div>";
+            }
+
+            data += "</div>";
+            document.getElementById("res").innerHTML = data;
+            updateTotalQuantity();
+        }
+
+        function getQuantity(id) {
+            var found = basket.find((item) => item.id === id);
+            if (found) {
+                return found.quantity;
+            } else {
+                return 0;
+            }
+        }
+
+        function updateTotalQuantity() {
+            var totalQuantity = basket.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById("showTQuantity").innerHTML = totalQuantity;
+        }
+
+        function updateQuantity(id, change) {
+            var found = basket.find((item) => item.id === id);
+            var itemDetails = details.find((item) => item.no === id);
+
+            if (found) {
+                found.quantity += change;
+                if (found.quantity <= 0) {
+                    basket = basket.filter((item) => item.id !== id);
+                }
+            } else if (change > 0) {
+                basket.push({
+                    id: id,
+                    quantity: change,
+                    product_Img: itemDetails.product_Img,
+                    product_Name: itemDetails.product_Name,
+                    product_Price: itemDetails.product_Price,
+                    product_OPrice: itemDetails.product_OPrice
+                });
+            }
+
+            console.log(basket);
+            updateQuantityDisplay(id);
+            updateTotalQuantity();
+            localStorage.setItem("basket", JSON.stringify(basket));
+        }
+
+
+        function updateQuantityDisplay(id) {
+            var quantityElement = document.getElementById(`quantity_${id}`);
+            var found = basket.find((item) => item.id == id);
+            if (found) {
+                quantityElement.innerHTML = found.quantity;
+            } else {
+                quantityElement.innerHTML = '0';
+                alert("Quantity is Zero!!!");
+            }
+        }
+
+        function increment(id) {
+            updateQuantity(id, 1);
+        }
+
+        function decrement(id) {
+            updateQuantity(id, -1);
+        }
+
+        Set_data();
+        
+    </script>
+</body>
+
+</html>

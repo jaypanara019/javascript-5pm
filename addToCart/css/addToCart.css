@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Roboto", sans-serif; 
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+h1 {
+    font-weight: 400;
+    font-size: 30px;
+    font-family: "Raleway";
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #eeeeee;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 40px;
+    text-align: center;
+}
+
+nav a {
+    font-size: 35px;
+    color: white;
+    position: relative;
+}
+
+nav a span {
+    padding: 5px 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 18px;
+    top: -40%;
+    right: -30%;
+}
+
+img {
+    border-radius: 10px;
+}
+
+#res {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.box {
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 285px);
+    text-align: center;
+    gap: 30px 30px;
+    justify-content: center;
+}
+
+
+h5 span {
+    text-decoration: line-through;
+}
+
+.productName {
+    font-size: 23px;
+    margin: 19px 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.price,
+.quantity {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.insideBox h5 {
+    margin: 5px 0 25px 0;
+}
+
+.insideBox {
+    background-color: #ffeadda5; 
+}
+
+.insideBox img {
+    filter: drop-shadow(-10px 15px 16px #0009);
+    transform: scale(0.97);
+    transition: all 0.3s linear;
+}
+
+.insideBox:hover img {
+    transform: scale(1);
+    filter: drop-shadow(-10px 27px 16px #0009);
+}
+
+.insideBox h2 {
+    transition: all 0.2s linear;
+    font-weight: 800;
+}
+
+.insideBox:hover h2 {
+    letter-spacing: 5px;
+}
+
+.quantity {
+    font-size: 20px;
+}
+
+
+/* btn  */
+
+.Buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px 10px;
+}
+
+.Buttons a {
+    margin-right: 10px;
+}
+
+.bi-plus-circle-fill,
+.bi-dash-circle-fill {
+    font-size: 40px;
+    color: rgb(21, 255, 21);
+    cursor: pointer;
+}
+
+.bi-dash-circle-fill {
+    color: rgb(255, 29, 29);
+}
+
+.grand-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout,
+.clear_Cart {
+    background-color: green;
+    padding: 15px 30px;
+    color: white;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.clear_Cart {
+    background-color: rgb(221, 7, 0);
+}
+
+.container {
+    width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box {
+    flex-basis: calc(50% - 10px);
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.productName {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.price {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.quantity {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.total {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.total span {
+    color: rgb(0, 102, 255);
+}
+
+.grand-total {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

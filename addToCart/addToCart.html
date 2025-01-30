@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add To Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/addToCart.css">
+</head>
+
+<body>
+    <nav>
+        <h1><a href="addItems.html"></a>Add To Cart</h1>
+    </nav>
+    <div class="container">
+        <div class="grand-total" id="grandTotal">
+        </div>
+        <div id="res" class="box"></div>
+    </div>
+
+    <script src="js/addToCart.js"></script>
+    <script>
+        var basket = JSON.parse(localStorage.getItem("basket")) || [];
+        var sum = 0;
+
+        function Set_data() {
+            var data = "";
+            sum = 0;
+            if (basket.length === 0) {
+                data = "<h3 class='cart-item'>No items in the cart</h3>";
+            } else {
+                for (var i = 0; i < basket.length; i++) {
+                    data += "<div class='box'>";
+                    data += "<img src='" + basket[i].product_Img + "' alt='Product Image' width='200px' height='200px'>";
+                    data += "<h2 class='productName'>" + basket[i].product_Name + "</h2>";
+                    data += "<p class='price'>Price: ₹ " + basket[i].product_Price + "</p>";
+                    data += `<div class='Buttons'>
+                        <div id="quantity_${i}" class='quantity'>Quantity =>   ${basket[i].quantity}</div>
+                        </div>`;
+                    var subtotal = basket[i].quantity * basket[i].product_Price;
+                    data += "<p class='total'>SUBTOTAL: <span> ₹ " + subtotal + "</span></p>";
+                    data += `<a href='javascript:Delete(${i})'>delete</a>`;
+                    data += "</div>";
+                    sum += subtotal;
+                }
+            }
+            document.getElementById("grandTotal").innerHTML = "<h2 class='gt'>GRAND TOTAL :<span style='color:green;'> ₹ " + sum + "</span></h2><div><a href='javascript:deleteAll()' class='clear_Cart'>Clear All</a><a href='javascript:checkout()' class='checkout'>Checkout</a></div>";
+            document.getElementById("res").innerHTML = data;
+        }
+        Set_data();
+
+        function Delete(index) {
+            basket.splice(index, 1);
+            localStorage.setItem("basket", JSON.stringify(basket));
+            Set_data();
+        }
+
+        function deleteAll() {
+            basket = [];
+            localStorage.setItem("basket", JSON.stringify(basket));
+            Set_data();
+            document.querySelector(".gt").innerHTML = "GRAND TOTAL : <span style='color:green;'>₹ 0</span>";
+        }
+
+        function checkout() {
+    deleteAll();
+    document.querySelector("#grandTotal").innerHTML = "<h3>Thanks for Shopping...😁</h3>";
+    document.querySelector(".cart-item").innerHTML = "";
+    setTimeout(function() {
+        window.location.href = "addItems.html";
+    }, 2000);
+}
+
+    </script>
+</body>
+
+</html>

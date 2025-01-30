@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+h1 {
+    margin: 15px 0;
+    font-size: 45px;
+    text-align: center;
+}
+
+label {
+    font-size: 16px;
+    padding: 5px 0;
+    color: rgb(0, 0, 0);
+}
+
+input {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.form_elems {
+    width: 450px;
+    padding: 60px 50px;
+    border-radius: 20px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 18px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.bg {
+    position: absolute;
+    width: 1900px;
+    height: 700px;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);    z-index: -1;
+    animation-name: rotates;
+    animation-timing-function: linear;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+
+.form_elems a {
+    width: 100%;
+    height: 30px;
+    line-height: 15px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+button,
+.submit ,.form_elems a{
+    padding: 8px;
+    color: black;
+    font-weight: 500!important;
+    border-radius: 10px;
+    text-transform: uppercase;
+    border: none;
+    transition: all 0.2s linear;
+}
+
+.submit:hover,.form_elems a:hover {
+    background-color: rgb(0, 189, 0);
+    color: white;
+}
+
+.table-container {
+    margin: 20px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.data-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+}
+
+.product-image {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.btn-delete,
+.btn-update {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-delete {
+    background-color: greenyellow;
+}
+
+.btn-update {
+    background-color: skyblue;
+}

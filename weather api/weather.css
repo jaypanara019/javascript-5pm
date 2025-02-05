@@ -1,0 +1,70 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("https://images.pexels.com/photos/186980/pexels-photo-186980.jpeg?cs=srgb&dl=pexels-tahir-shaw-50609-186980.jpg&fm=jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.box {
+    position: relative;
+    padding: 10px 15px;
+    background-color: rgb(53, 8, 8);
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+input {
+    border: 2px solid rgb(0, 0, 0);
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.ri-search-line {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+}
+
+#weather-result {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    color: white;
+}
+
+.weather-card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    padding: 3px;
+}
+
+.weather-card h3 {
+    font-size: 15px;
+    text-transform: capitalize;
+    padding: 2px;
+}
+
+.weather-card p {
+    font-size: 15px;
+    margin: auto 0;
+    padding: 5px;
+}
+
